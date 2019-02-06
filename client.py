@@ -4,7 +4,7 @@
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 import tkinter
-
+from umbral import pre, keys, signing
 
 def receive():
     """Handles receiving of messages."""
@@ -20,6 +20,7 @@ def send(event=None):  # event is passed by binders.
     """Handles sending of messages."""
     msg = my_msg.get()
     my_msg.set("")  # Clears input field.
+
     client_socket.send(bytes(msg, "utf8"))
     if msg == "{quit}":
         client_socket.close()
