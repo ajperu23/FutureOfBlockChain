@@ -39,7 +39,7 @@ capsule.set_correctness_keys(delegating=alices_public_key,
                              verifying=alices_verifying_key)
 
 cfrags = list()           # Bob's cfrag collection
-for kfrag in kfrags[:9]:
+for kfrag in kfrags[:10]:
   cfrag = pre.reencrypt(kfrag=kfrag, capsule=capsule)
   cfrags.append(cfrag)    # Bob collects a cfrag
 
