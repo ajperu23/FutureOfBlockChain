@@ -26,7 +26,7 @@ globalLogPublisher.addObserver(SimpleObserver())
 TEMP_ARJUN_DIR = "arjun-files".format(os.path.dirname(os.path.abspath(__file__)))
 
 # We expect the url of the seednode as the first argument.
-SEEDNODE_URL = 'localhost:11500'
+SEEDNODE_URL = '146.169.199.115:11500'
 
 
 #######################################

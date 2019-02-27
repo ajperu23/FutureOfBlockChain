@@ -33,7 +33,7 @@ from nucypher.utilities.logging import SimpleObserver
 
 FLEET_POPULATION = 5
 DEMO_NODE_STARTING_PORT = 11501
-TEACHER_URI = f'127.0.0.1:11500'
+TEACHER_URI = f'146.169.199.115:11500'
 
 
 def spin_up_federated_ursulas(quantity: int = FLEET_POPULATION):

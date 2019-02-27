@@ -21,7 +21,7 @@ from umbral.keys import UmbralPublicKey
 # Boring setup stuff #
 ######################
 
-SEEDNODE_URL = 'localhost:11501'
+SEEDNODE_URL = '146.169.199.115:11501'
 
 # TODO: path joins?
 TEMP_MAYANK_DIR = "{}/mayank-files".format(os.path.dirname(os.path.abspath(__file__)))
