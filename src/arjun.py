@@ -87,7 +87,8 @@ print("The policy public key for "
 # In this example, we create a local file with encrypted data, containing
 # heart rate measurements from a heart monitor
 import msg
-msg.generate_message(policy_pubkey,
+msg_data = input("Please input a message here: ")
+msg.generate_message(policy_pubkey, msg_data,
                                    label=label,
                                           save_as_file=True)
 

@@ -12,7 +12,7 @@ FILENAME = 'data.msgpack'
 DEFAULT_LABEL = b"message"
 
 
-def generate_message(policy_pubkey,
+def generate_message(policy_pubkey,  msg_data,
                                 label: bytes = DEFAULT_LABEL,
                                 save_as_file: bool = False):
     
@@ -34,7 +34,7 @@ def generate_message(policy_pubkey,
 
     # need to replace with user input
     user_input = {
-        'msg': "hello this is me",
+        'msg': msg_data,
         'timestamp': now,
     }
 
