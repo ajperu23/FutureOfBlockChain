@@ -91,7 +91,7 @@ for message_kit in message_kits:
         retrieved_plaintexts = mayank.retrieve(
             message_kit=message_kit,
             data_source=data_source,
-            arjun_verifying_key=arjuns_sig_pubkey
+            alice_verifying_key=arjuns_sig_pubkey
         )
         end = timer()
 
