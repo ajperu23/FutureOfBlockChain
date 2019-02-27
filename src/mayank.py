@@ -63,11 +63,11 @@ with open("policy-metadata.json", 'r') as f:
     policy_data = json.load(f)
 
 policy_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["policy_pubkey"]))
-alices_sig_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["arjun_sig_pubkey"]))
+arjuns_sig_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["arjun_sig_pubkey"]))
 label = policy_data["label"].encode()
 
 print("The Mayank joins policy for label '{}'".format(label.decode("utf-8")))
-mayank.join_policy(label, alices_sig_pubkey)
+mayank.join_policy(label, arjuns_sig_pubkey)
 
 # Now that the Doctor joined the policy in the NuCypher network,
 # he can retrieve encrypted data which he can decrypt with his private key.
@@ -91,7 +91,7 @@ for message_kit in message_kits:
         retrieved_plaintexts = mayank.retrieve(
             message_kit=message_kit,
             data_source=data_source,
-            alice_verifying_key=alices_sig_pubkey
+            arjun_verifying_key=arjuns_sig_pubkey
         )
         end = timer()
 
