@@ -26,7 +26,7 @@ globalLogPublisher.addObserver(SimpleObserver())
 TEMP_ARJUN_DIR = "arjun-files".format(os.path.dirname(os.path.abspath(__file__)))
 
 # We expect the url of the seednode as the first argument.
-SEEDNODE_URL = '146.169.199.115:11500'
+SEEDNODE_URL = '146.169.204.22:11500'
 
 
 #######################################
@@ -120,6 +120,40 @@ m, n = 3, 5
 # The policy is sent to the NuCypher network.
 print("Creating access policy for the Mayank...")
 policy = arjun.grant(bob=mayank_strange,
+                      label=label,
+                      m=m,
+                      n=n,
+                      expiration=policy_end_datetime)
+print("Done!")
+
+
+
+#adding charlie to policy
+
+from charlie_keys import get_charlie_pubkeys
+charlie_pubkeys = get_charlie_pubkeys()
+
+powers_and_material = {
+    DecryptingPower: charlie_pubkeys['enc'],
+    SigningPower: charlie_pubkeys['sig']
+}
+
+# We create a view of the Bob who's going to be granted access.
+charlie_strange = Bob.from_public_keys(powers_and_material=powers_and_material,
+                                      federated_only=True)
+
+# Here are our remaining Policy details, such as:
+# - Policy duration
+policy_end_datetime = maya.now() + datetime.timedelta(days=5)
+# - m-out-of-n: This means Alicia splits the re-encryption key in 5 pieces and
+#               she requires Bob to seek collaboration of at least 3 Ursulas
+m, n = 3, 5
+
+
+# With this information, Alicia creates a policy granting access to Bob.
+# The policy is sent to the NuCypher network.
+print("Creating access policy for the Charlie..")
+policy = arjun.grant(bob=charlie_strange,
                       label=label,
                       m=m,
                       n=n,
