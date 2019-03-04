@@ -13,9 +13,8 @@ DEFAULT_LABEL = b"message"
 
 
 def generate_message(policy_pubkey,  msg_data,
-                                label: bytes = DEFAULT_LABEL,
-                                save_as_file: bool = False):
-    
+                                label: bytes = DEFAULT_LABEL):
+
     data_source = DataSource(policy_pubkey_enc=policy_pubkey,
                              label=label)
 
@@ -49,8 +48,8 @@ def generate_message(policy_pubkey,  msg_data,
         'kits': kits,
     }
 
-    if save_as_file:
-        with open(FILENAME, "wb") as file:
-            msgpack.dump(data, file, use_bin_type=True)
+    # if save_as_file:
+    #     with open(FILENAME, "wb") as file:
+    #         msgpack.dump(data, file, use_bin_type=True)
 
     return data

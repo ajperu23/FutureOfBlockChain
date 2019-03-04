@@ -15,6 +15,7 @@ bobs_public_key = bobs_private_key.get_pubkey()
 # Encrypt data with Alice's public key.
 plaintext = b'Proxy Re-encryption is cool!'
 ciphertext, capsule = pre.encrypt(alices_public_key, plaintext)
+print(capsule)
 print("Plaintext: ", plaintext)
 print("Ciphertext: ", ciphertext)
 

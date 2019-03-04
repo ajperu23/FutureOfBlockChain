@@ -26,7 +26,7 @@ globalLogPublisher.addObserver(SimpleObserver())
 TEMP_ARJUN_DIR = "arjun-files".format(os.path.dirname(os.path.abspath(__file__)))
 
 # We expect the url of the seednode as the first argument.
-SEEDNODE_URL = '146.169.204.22:11500'
+SEEDNODE_URL = '146.169.207.43:11500'
 
 
 #######################################
@@ -86,11 +86,6 @@ print("The policy public key for "
 # that **don't exist yet**.
 # In this example, we create a local file with encrypted data, containing
 # heart rate measurements from a heart monitor
-import msg
-msg_data = input("Please input a message here: ")
-msg.generate_message(policy_pubkey, msg_data,
-                                   label=label,
-                                          save_as_file=True)
 
 
 # Alicia now wants to share data associated with this label.
@@ -171,4 +166,12 @@ policy_info = {
 filename = POLICY_FILENAME
 with open(filename, 'w') as f:
     json.dump(policy_info, f)
+
+
+#merging message creation and making it real time
+# msg_data = input("Please input a message here: ")
+# msg.generate_message(policy_pubkey, msg_data,
+#                                    label=label,
+#                                           save_as_file=True)
+
 
