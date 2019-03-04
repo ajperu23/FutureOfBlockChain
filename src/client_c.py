@@ -120,8 +120,8 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 
 
 #----Now comes the sockets part----
-# HOST = input('Enter host: ')
-HOST = "146.169.207.43"
+HOST = input('Enter host: ')
+# HOST = "146.169.207.43"
 PORT = 33000
 
 BUFSIZ = 4096
