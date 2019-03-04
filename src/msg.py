@@ -1,6 +1,7 @@
 import random
 import time
 import msgpack
+import json
 
 from nucypher.data_sources import DataSource
 
@@ -19,6 +20,7 @@ def generate_message(policy_pubkey,  msg_data,
                              label=label)
 
     data_source_public_key = bytes(data_source.stamp)
+    # data_source_public_key = data_source.stamp
 
     # heart_rate = 80
     now = time.time()
@@ -41,6 +43,7 @@ def generate_message(policy_pubkey,  msg_data,
     message_kit, _signature = data_source.encrypt_message(plaintext)
 
     kit_bytes = message_kit.to_bytes()
+    # kit_bytes = message_kit
     kits.append(kit_bytes)
 
     data = {
@@ -48,10 +51,11 @@ def generate_message(policy_pubkey,  msg_data,
         'kits': kits,
     }
 
+    # print("data dict", data)
     final_msg = msgpack.dumps(data, use_bin_type=True)
 
     # if save_as_file:
     #     with open(FILENAME, "wb") as file:
     #         msgpack.dump(data, file, use_bin_type=True)
-    print(final_msg)
+    # print("finalmsgmsg pack",final_msg)
     return final_msg

@@ -4,7 +4,7 @@
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 import tkinter
-import msg
+import msg 
 
 import json
 import os
@@ -29,45 +29,66 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 import mayank_builder
 
+mayank, policy_pubkey, arjuns_sig_pubkey, label = mayank_builder.generate_mayank()
 
+first = True
+receive_counter = 0
 
 def receive():
     """Handles receiving of messages."""
+    global receive_counter
     while True:
         try:
             """receive policy json dump"""
-            data = client_socket.recv(BUFSIZ).decode("utf8")
-            # msg = mayank_builder.decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey)
-            msg_list.insert(tkinter.END, data) #display on tkinter
+            data = client_socket.recv(BUFSIZ)#decode("utf8")
+            if receive_counter < 2:
+                data = data.decode("utf8")
+                msg_list.insert(tkinter.END, data) #display on tkinter
+            else:
+                print("receive:", data)
+                print(type(data))
+                # name, cipher = data.split(" ")
+                # print("name", name)
+                # print("cipher", cipher)
+                msg = mayank_builder.decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey, mayank)
+                msg_list.insert(tkinter.END, msg) #display on tkinter
+            receive_counter += 1
             
-        except OSError:  # Possibly client has left the chat.
-            break
+        except OSError as e:  # Possibly client has left the chat.
+            print("this is fucked", e)
 
 
 def send(event=None):  # event is passed by binders.
     """Handles sending of messages."""
     msg_data = my_msg.get()
-    print(msg_data)
-    print(type(msg_data))
-    send_data = msg.generate_message(policy_pubkey, msg_data,label)
-    print(send_data)
-    print(type(send_data))
+    global first
+
+    if msg_data == "{quit}":
+        client_socket.send(bytes("{quit}", "utf8"))
+        client_socket.close()
+        os._exit(0)
+        top.quit()
+
+    if first:
+        send_data = bytes(msg_data, "utf8")
+        first = False
+    else:
+        send_data = msg.generate_message(policy_pubkey, msg_data,label)
+
+    # print("send", msg_data)
+    # print(type(msg_data))
+    print("send", send_data)
+    # print(type(send_data))
     my_msg.set("")  # Clears input field.
 
     """send the policy json dump"""
-
-    client_socket.send(bytes(str(send_data),"utf8"));
-    if msg == "{quit}":
-        client_socket.close()
-        top.quit()
-
+    client_socket.send(send_data);
 
 def on_closing(event=None):
     """This function is to be called when the window is closed."""
     my_msg.set("{quit}")
     send()
 
-mayank, policy_pubkey, arjuns_sig_pubkey, label = mayank_builder.generate_mayank()
 
 top = tkinter.Tk()
 top.title("Chatter")
@@ -100,10 +121,10 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 
 #----Now comes the sockets part----
 # HOST = input('Enter host: ')
-HOST = "146.169.174.116"
+HOST = "146.169.207.43"
 PORT = 33000
 
-BUFSIZ = 1024
+BUFSIZ = 4096
 ADDR = (HOST, PORT)
 
 client_socket = socket(AF_INET, SOCK_STREAM)

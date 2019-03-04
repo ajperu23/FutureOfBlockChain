@@ -21,14 +21,14 @@ def handle_client(client):  # Takes client socket as argument.
     name = client.recv(BUFSIZ).decode("utf8")
     welcome = 'Welcome %s! If you ever want to quit, type {quit} to exit.' % name
     client.send(bytes(welcome, "utf8"))
-    msg = "%s has joined the chat!" % name
-    broadcast(bytes(msg, "utf8"))
+    # msg = "%s has joined the chat!" % name
+    # broadcast(bytes(msg, "utf8"))
     clients[client] = name
 
     while True:
         msg = client.recv(BUFSIZ)
         if msg != bytes("{quit}", "utf8"):
-            broadcast(msg, name+": ")
+            broadcast(msg) #name+": ")
         else:
             client.send(bytes("{quit}", "utf8"))
             client.close()
@@ -49,7 +49,7 @@ addresses = {}
 
 HOST = ''
 PORT = 33000
-BUFSIZ = 1024
+BUFSIZ = 4096
 ADDR = (HOST, PORT)
 
 SERVER = socket(AF_INET, SOCK_STREAM)

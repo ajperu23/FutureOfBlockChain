@@ -60,10 +60,10 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 # else:
 #     PORT = int(PORT)
 
-HOST = "146.169.174.116"
+HOST = "146.169.207.43"
 PORT = 33000
 
-BUFSIZ = 1024
+BUFSIZ = 4096
 ADDR = (HOST, PORT)
 
 client_socket = socket(AF_INET, SOCK_STREAM)
