@@ -48,8 +48,10 @@ def generate_message(policy_pubkey,  msg_data,
         'kits': kits,
     }
 
+    final_msg = msgpack.dumps(data, use_bin_type=True)
+
     # if save_as_file:
     #     with open(FILENAME, "wb") as file:
     #         msgpack.dump(data, file, use_bin_type=True)
-
-    return data
+    print(final_msg)
+    return final_msg

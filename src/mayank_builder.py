@@ -92,7 +92,7 @@ def generate_mayank():
 # here we start decrypting the message
 
 def decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey):
-# data = msgpack.load(open("data.msgpack", "rb"), raw=False)
+    data = msgpack.load(data, raw=False)
     message_kits = (UmbralMessageKit.from_bytes(k) for k in data['kits'])
 
     # The mayank also needs to create a view of the Data Source from its public keys
