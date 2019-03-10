@@ -19,5 +19,5 @@ Pip install tkinter.
 Python 3.6 is required. 
 
 # Usage
-
+Go to the undermyumbralla folder for all the files. Proceed with the following order on a command line.
 Setup nucypher network by running a teacher ursula and a fleet of ursulas with IP addresses configured in the Python files. Run alice_and_policy_two.py to generate access to people in the group chat. Run the server with a given Host and Port. Run the client scripts to allow communication through the tkinter GUI. Press {quit} to quit the chat. 
