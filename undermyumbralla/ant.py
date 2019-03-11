@@ -60,7 +60,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 # else:
 #     PORT = int(PORT)
 
-HOST = "146.169.205.219"
+HOST = "146.169.192.138"
 PORT = 33000
 
 BUFSIZ = 4096

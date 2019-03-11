@@ -29,7 +29,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 import charlie_builder
 
-charlie, policy_pubkey, arjuns_sig_pubkey, label = charlie_builder.generate_charlie()
+try:
+    charlie, policy_pubkey, arjuns_sig_pubkey, label = charlie_builder.generate_charlie()
+except: 
+    print("You are not allowed in this policy")
+    os._exit(0)
 
 first = True
 receive_counter = 0
@@ -111,7 +115,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 
 #----Now comes the sockets part----
 # HOST = input('Enter host: ')
-HOST = "146.169.205.219"
+HOST = "146.169.192.138"
 PORT = 33000
 
 BUFSIZ = 4096

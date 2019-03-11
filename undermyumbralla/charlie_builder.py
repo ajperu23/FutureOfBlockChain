@@ -19,7 +19,7 @@ from umbral.keys import UmbralPublicKey
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-SEEDNODE_URL = '146.169.205.219:11501'
+SEEDNODE_URL = '146.169.192.138:11501'
 
 # TODO: path joins?
 TEMP_CHARLIE_DIR = "{}/charlie-files".format(os.path.dirname(os.path.abspath(__file__)))
