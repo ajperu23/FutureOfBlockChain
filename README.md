@@ -1,12 +1,12 @@
 # FutureOfBlockChain
 Future of BlockChain Competition Entry
 
-We managaed to create and end to end application which has the potential to message accross WAN. The idea is that there's a main server, which clients can connect to and send messages and the server controls all the information that's been sent and can see which clients are active. 
+We managaed to create an end to end application which has the potential to message accross WAN. The idea is that there's a main server, which clients can connect to and send messages and the server controls all the information that's been sent and can see which clients are active. 
 
 # Debug and Process
-We began setting up virtual environments using python-env and then downloading NuCypher onto it, and bring the Git-Repo from NuCypher to try and plug and play with some of the demos. We configured our own Ursulas and managed to assign them to our own IP and set our own ports and then access them via web browsers.
+We began setting up virtual environments using python-env and then downloading NuCypher onto it, and bring the git repo from NuCypher to try and plug and play with some of the demos. We configured our own proxies (Ursulas) and managed to assign them to our own IP and set our own ports and then access them via web browsers.
 
-Issues Encountered:
+Issues Encountered and Resolved:
 
 1) Response has not attribute "data" - potentially a wrong file or the methodology of sending the information is quite weak.
 2) No response from teacher ursula when trying to connect them across the network
