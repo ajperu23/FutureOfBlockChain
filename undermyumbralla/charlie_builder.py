@@ -63,17 +63,17 @@ def generate_charlie():
         policy_data = json.load(f)
 
     policy_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["policy_pubkey"]))
-    arjuns_sig_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["arjun_sig_pubkey"]))
+    alices_sig_pubkey = UmbralPublicKey.from_bytes(bytes.fromhex(policy_data["alice_sig_pubkey"]))
     label = policy_data["label"].encode()
 
     print("The Charlie joins policy for label '{}'".format(label.decode("utf-8")))
-    charlie.join_policy(label, arjuns_sig_pubkey)
+    charlie.join_policy(label, alices_sig_pubkey)
 
-    return charlie, policy_pubkey, arjuns_sig_pubkey, label
+    return charlie, policy_pubkey, alices_sig_pubkey, label
 
 # here we start decrypting the message
 
-def decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey, charlie):
+def decrypting_msg(data, policy_pubkey, label, alices_sig_pubkey, charlie):
     data = msgpack.loads(data, raw=False)
     print("afterjson", data)
     message_kits = (UmbralMessageKit.from_bytes(k) for k in data['kits'])
@@ -92,7 +92,7 @@ def decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey, charlie):
             retrieved_plaintexts = charlie.retrieve(
                 message_kit=message_kit,
                 data_source=data_source,
-                alice_verifying_key=arjuns_sig_pubkey
+                alice_verifying_key=alices_sig_pubkey
             )
             end = timer()
 

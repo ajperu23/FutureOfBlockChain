@@ -30,7 +30,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import charlie_builder
 
 try:
-    charlie, policy_pubkey, arjuns_sig_pubkey, label = charlie_builder.generate_charlie()
+    charlie, policy_pubkey, alices_sig_pubkey, label = charlie_builder.generate_charlie()
 except: 
     print("You are not allowed in this policy")
     os._exit(0)
@@ -52,7 +52,7 @@ def receive():
             else:
                 # print("receive:", data)
                 # print(type(data))
-                msg = charlie_builder.decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey, charlie)
+                msg = charlie_builder.decrypting_msg(data, policy_pubkey, label, alices_sig_pubkey, charlie)
                 msg_list.insert(tkinter.END, msg) #display on tkinter
             receive_counter += 1
             

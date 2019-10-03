@@ -2,35 +2,35 @@ import json
 import os
 from umbral.keys import UmbralPrivateKey, UmbralPublicKey
 
-MAYANK_PUBLIC_JSON = 'mayank.public.json'
-MAYANK_PRIVATE_JSON = 'mayank.private.json'
+BOB_PUBLIC_JSON = 'bob.public.json'
+BOB_PRIVATE_JSON = 'bob.private.json'
 
 
-def generate_mayank_keys():
+def generate_bob_keys():
     enc_privkey = UmbralPrivateKey.gen_key()
     sig_privkey = UmbralPrivateKey.gen_key()
 
-    mayank_privkeys = {
+    bob_privkeys = {
         'enc': enc_privkey.to_bytes().hex(),
         'sig': sig_privkey.to_bytes().hex(),
     }
 
-    with open(MAYANK_PRIVATE_JSON, 'w') as f:
-        json.dump(mayank_privkeys, f)
+    with open(BOB_PRIVATE_JSON, 'w') as f:
+        json.dump(bob_privkeys, f)
 
     enc_pubkey = enc_privkey.get_pubkey()
     sig_pubkey = sig_privkey.get_pubkey()
-    mayank_pubkeys = {
+    bob_pubkeys = {
         'enc': enc_pubkey.to_bytes().hex(),
         'sig': sig_pubkey.to_bytes().hex()
     }
-    with open(MAYANK_PUBLIC_JSON, 'w') as f:
-        json.dump(mayank_pubkeys, f)
+    with open(BOB_PUBLIC_JSON, 'w') as f:
+        json.dump(bob_pubkeys, f)
 
 
 def _get_keys(file, key_class):
     if not os.path.isfile(file):
-        generate_mayank_keys()
+        generate_bob_keys()
 
     with open(file) as f:
         stored_keys = json.load(f)
@@ -40,9 +40,9 @@ def _get_keys(file, key_class):
     return keys
 
 
-def get_mayank_pubkeys():
-    return _get_keys(MAYANK_PUBLIC_JSON, UmbralPublicKey)
+def get_bob_pubkeys():
+    return _get_keys(BOB_PUBLIC_JSON, UmbralPublicKey)
 
 
-def get_mayank_privkeys():
-    return _get_keys(MAYANK_PRIVATE_JSON, UmbralPrivateKey)
+def get_bob_privkeys():
+    return _get_keys(BOB_PRIVATE_JSON, UmbralPrivateKey)

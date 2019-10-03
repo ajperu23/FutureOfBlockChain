@@ -27,9 +27,9 @@ from umbral.keys import UmbralPublicKey
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-import mayank_builder
+import bob_builder
 
-mayank, policy_pubkey, arjuns_sig_pubkey, label = mayank_builder.generate_mayank()
+bob, policy_pubkey, alices_sig_pubkey, label = bob_builder.generate_bob()
 
 first = True
 receive_counter = 0
@@ -48,7 +48,7 @@ def receive():
             else:
                 # print("receive:", data)
                 # print(type(data))
-                msg = mayank_builder.decrypting_msg(data, policy_pubkey, label, arjuns_sig_pubkey, mayank)
+                msg = bob_builder.decrypting_msg(data, policy_pubkey, label, alices_sig_pubkey, bob)
                 msg_list.insert(tkinter.END, msg) #display on tkinter
             receive_counter += 1
             
